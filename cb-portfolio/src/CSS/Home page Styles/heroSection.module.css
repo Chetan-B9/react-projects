@@ -1,0 +1,31 @@
+.hero_section{
+    height: calc(100vh - 76px);
+}
+
+.image_part{
+    /* .circle{
+        width: 25rem;
+        height: 25rem;
+        z-index: -1; 
+    } */
+
+    img{
+        width: 35rem;
+        height: 35rem;
+        object-fit: cover;
+
+    }
+    
+}
+
+.social_links{
+    ul li{
+        clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+    }
+}
+
+@media (width < 1200px){
+    .hero_section{
+        height: fit-content;
+    }
+}
