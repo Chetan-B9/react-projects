@@ -6,12 +6,12 @@ function Home() {
   return (
     // hero section start
     <section
-      className={`${heroSecStyle.hero_section} px-8 md:px-20 lg:px-40  flex flex-col lg:h-[calc(100vh - 76px)]`}
+      className={`${heroSecStyle.hero_section} px-8 pt-10 md:px-20 lg:px-40  flex flex-col lg:h-[calc(100vh - 76px)]`}
     >
       <div className="container lg:h-[80%] grid grid-cols-1 lg:grid-cols-2">
         <div className={`${heroSecStyle.image_part} h-full flex justify-center items-center`}>
           <img
-            src="Images/cb-portfolio image2.webp"
+            src="Images/cb portfolio3.webp"
             alt="My image"
           />
         </div>
