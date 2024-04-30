@@ -14,7 +14,7 @@ function Header() {
         <div className="hidden lg:flex flex-1 text-msm ">
             <ul className="lg:flex justify-end items-center  gap-12 w-full h-full font-semibold">
                 <li className="hover:text-main">
-                    <NavLink to="/" className={(isActive) => isActive ? "text-main" : "text-primary-text"}>Home</NavLink>
+                    <NavLink to="/" className={({isActive}) => isActive ? "text-main" : "text-primary-text"}>Home</NavLink>
                 </li>
                 <li className="hover:text-main">
                    <NavLink to="/">About</NavLink>

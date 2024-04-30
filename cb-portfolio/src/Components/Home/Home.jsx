@@ -4,8 +4,10 @@ import { FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp } from "react-icons/fa"
 
 function Home() {
   return (
-    // hero section start
-    <section
+    <>
+    <div className="container">
+{/*  hero section start */}
+<section
       className={`${heroSecStyle.hero_section} px-8 pt-10 md:px-20 lg:px-40  flex flex-col lg:h-[calc(100vh - 76px)]`}
     >
       <div className="container lg:h-[80%] grid grid-cols-1 lg:grid-cols-2">
@@ -50,7 +52,36 @@ function Home() {
          </div>
       </div>
     </section>
-    // hero section end
+    {/* hero section end */}
+
+    {/* About section start */}
+    <section className={`${heroSecStyle.about_section} px-8 py-10 md:px-20 lg:px-40 bg-secondary-bg flex flex-col  gap-16 text-center`}>
+        <h3 className="text-4xl text-main  font-bold">About Me</h3>
+        <div className="grid grid-cols-2">
+        <div className="flex justify-center">
+          <img src="Images/About me-cuate.png" alt="about me image" />
+        </div>
+
+        <div className="h-full">
+       <div className=" text-sm text-justify text-secondary-text h-full flex flex-col justify-center">
+         <p>As a web developer, coding has been my playground for years. With a toolbox of HTML, CSS, Bootstrap, JavaScript (React), and PHP, I bring ideas to life through dynamic web experiences. What drives me? The thrill of solving problems with elegant code, transforming concepts into pixels, and connecting with people through the digital realm.
+        </p>
+         <p  className="mt-3">If you&apos;re looking for a code warrior who&apos;s also a creative enthusiast, <Link to="#" className="text-main underline underline-offset-3">let&apos;s collaborate</Link> and build something awesome together. I&apos;m always eager to join forces on cool projects that merge technical prowess with innovative thinking.
+        </p>
+       </div>
+       </div>
+        </div>
+        
+        
+
+        
+        
+        
+    </section> 
+    </div>
+    
+    </>
+    // About section end 
   );
 }
 

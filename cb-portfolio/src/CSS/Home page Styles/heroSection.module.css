@@ -24,6 +24,13 @@
     }
 }
 
+/* about section style start  */
+.about_section > div img{
+    width: 25rem;
+    height: 25rem;
+}
+/* about section style end  */
+
 @media (width < 1200px){
     .hero_section{
         height: fit-content;
