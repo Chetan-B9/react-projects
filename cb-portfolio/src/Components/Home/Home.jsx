@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import heroSecStyle from "../../CSS/Home page Styles/heroSection.module.css";
-import { FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp, FaAngleRight  } from "react-icons/fa";
+import ProjectCard from "./ProjectCard";
 
 function Home() {
   return (
@@ -55,7 +56,7 @@ function Home() {
     {/* hero section end */}
 
     {/* About section start */}
-    <section className={`${heroSecStyle.about_section} px-8 py-10 md:px-20 lg:px-40 bg-secondary-bg flex flex-col  gap-16 text-center`}>
+    <section className={`${heroSecStyle.about_section} px-8 py-14 md:px-20 lg:px-40 bg-secondary-bg flex flex-col  gap-16 text-center`}>
         <h3 className="text-4xl text-main  font-bold">About Me</h3>
         <div className="grid grid-cols-2">
         <div className="flex justify-center">
@@ -71,17 +72,28 @@ function Home() {
        </div>
        </div>
         </div>
-        
-        
-
-        
-        
-        
     </section> 
+    {/* About section end  */}
+
+    {/* Projects section start  */}
+    <section className={`project_section px-8 py-14 md:px-20 lg:px-40 flex flex-col gap-16 text-center`}>
+       <h3 className="text-4xl text-main  font-bold">My Projects</h3>
+
+       <div className="flex flex-col gap-32">
+         <ProjectCard rev={false}/>
+       </div>
+       
+       
+
+       <div className="flex justify-center text-msm text-secondary-text">
+         <Link to='#' className="flex items-center underline underline-offset-2 hover:text-main hover:drop-shadow-glow">See More <FaAngleRight /></Link>
+       </div>
+    </section>
+    {/* Projects section end  */}
     </div>
     
     </>
-    // About section end 
+   
   );
 }
 

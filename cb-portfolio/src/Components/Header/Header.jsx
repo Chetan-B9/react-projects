@@ -17,7 +17,7 @@ function Header() {
                     <NavLink to="/" className={({isActive}) => isActive ? "text-main" : "text-primary-text"}>Home</NavLink>
                 </li>
                 <li className="hover:text-main">
-                   <NavLink to="/">About</NavLink>
+                   <NavLink to="/about" className={({isActive}) => isActive ? "text-main" : "text-primary-text"}>About</NavLink>
                 </li>
                 <li className="hover:text-main">
                    <NavLink to="/">Projects</NavLink>

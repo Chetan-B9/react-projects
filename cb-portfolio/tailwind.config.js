@@ -29,6 +29,12 @@ export default {
       },
       fontSize: {
         msm: "0.8rem"
+      },
+      dropShadow : {
+        'glow' : [
+          '0 0 .5px #64f4ac',
+          '0 0 10px #64f4ac'
+        ]
       }
     },
   },

@@ -31,6 +31,16 @@
 }
 /* about section style end  */
 
+/* project section style start  */
+ .project_img{
+    width: 80%;
+    height: 18rem;
+    /* box-shadow:  10px 5px 15px rgba(0, 0, 0, 0.35); */
+    box-shadow: var(--main-color2) 0px 50px 100px -20px, var(--main-color2) 0px 30px 60px -30px;
+}
+
+/* project section style end  */
+
 @media (width < 1200px){
     .hero_section{
         height: fit-content;
