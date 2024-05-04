@@ -84,7 +84,7 @@ function Home() {
           {/* </div> */}
           <div className="flex flex-col gap-2">
             <p className="text-msm text-secondary-text">Let&apos;s bring designs to life with code magic.</p>
-            <Link href="mailto:chetan.bedakihale80@gamil.com" className="text-main underline underline-offset-4">Let&apos;s Talk</Link>
+            <Link href="mailto:chetan.bedakihale80@gamil.com" className="text-main underline underline-offset-4 hover:drop-shadow-glow w-fit">Let&apos;s Talk</Link>
           </div>
         </div>
       </div>
@@ -93,16 +93,16 @@ function Home() {
          <div className={`${heroSecStyle.social_links} h-full `}>
             <ul className="flex gap-8 h-full items-center justify-end">
               <li className="bg-secondary-bg p-3">
-                <Link to="#" target="_blank" className="hover:text-main"><FaLinkedinIn /></Link>
+                <Link to="#" target="_blank" className="hover:text-main hover:drop-shadow-glow transition duration-150 ease-in-out"><FaLinkedinIn /></Link>
               </li>
               <li className="bg-secondary-bg p-3">
-                <Link to="#" target="_blank" className="hover:text-main"><FaGithub  /></Link>
+                <Link to="#" target="_blank" className="hover:text-main hover:drop-shadow-glow transition duration-150 ease-in-out"><FaGithub  /></Link>
               </li>
               <li className="bg-secondary-bg p-3">
-                <Link to="#" target="_blank" className="hover:text-main"><FaInstagram  /></Link>
+                <Link to="#" target="_blank" className="hover:text-main hover:drop-shadow-glow transition duration-150 ease-in-out"><FaInstagram  /></Link>
               </li>
               <li className="bg-secondary-bg p-3">
-                <Link to="#" target="_blank" className="hover:text-main"><FaWhatsapp  /></Link>
+                <Link to="#" target="_blank" className="hover:text-main hover:drop-shadow-glow transition duration-150 ease-in-out"><FaWhatsapp  /></Link>
               </li>
           
             </ul>
@@ -168,6 +168,27 @@ function Home() {
         </div>
     </section>
     {/* Skills section end  */}
+
+    {/* proposal section start  */}
+    <section className="proposal_section px-8 py-14 md:px-20 lg:px-40 flex flex-col items-center gap-10">
+      <div className="text-center w-full md:w-1/2">
+        <h3 className="font-dm-sans text-2xl font-bold">Interested in <span className="text-main">collaborating</span> with me?</h3>
+        <p className="text-sm text-secondary-text my-3">I am always open to discussing web-based projects and partnership opportunities.</p>
+      </div>
+
+      <div className="flex gap-10 text-xl ">
+        <Link to="#" className="hover:text-main hover:drop-shadow-glow"><FaLinkedinIn /></Link>
+        <Link to="#" className="hover:text-main hover:drop-shadow-glow"><FaGithub  /></Link>
+        <Link to="#" className="hover:text-main hover:drop-shadow-glow"><FaInstagram  /></Link>
+        <Link to="#" className="hover:text-main hover:drop-shadow-glow"><FaWhatsapp  /></Link>
+      </div>
+    </section>
+    {/* proposal section end  */}
+
+    {/* resume button */}
+    <div className="px-8 py-14 md:px-20 lg:px-40 bg-secondary-bg text-center ">
+      <Link to="#" className="bg-main px-10 py-3 text-secondary-bg rounded-md hover:drop-shadow-glow transition duration-200 ease-in-out" role="button">My Resume</Link>
+    </div>
     </div>
     
     </>
