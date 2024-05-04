@@ -1,7 +1,9 @@
+
 import { Link } from "react-router-dom";
 import heroSecStyle from "../../CSS/Home page Styles/heroSection.module.css";
 import { FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp, FaAngleRight  } from "react-icons/fa";
 import ProjectCard from "./ProjectCard";
+
 // import SkillCard from "./SkillCard";
 
 function Home() {
@@ -54,6 +56,8 @@ function Home() {
     },
   ]
   
+
+
  
 
   return (
@@ -111,11 +115,11 @@ function Home() {
     <section className={`${heroSecStyle.about_section} px-8 py-14 md:px-20 lg:px-40 bg-secondary-bg flex flex-col  gap-16 text-center`}>
         <h3 className="text-4xl text-main  font-bold">About Me</h3>
         <div className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="flex justify-center">
+        <div className="flex justify-center" data-aos="fade-right">
           <img src="Images/About me-cuate.png" alt="about me image" />
         </div>
 
-        <div className="h-full">
+        <div className="h-full" data-aos="fade-left">
        <div className=" text-sm text-justify text-secondary-text h-full flex flex-col justify-center">
          <p>As a web developer, coding has been my playground for years. With a toolbox of HTML, CSS, Bootstrap, JavaScript (React), and PHP, I bring ideas to life through dynamic web experiences. What drives me? The thrill of solving problems with elegant code, transforming concepts into pixels, and connecting with people through the digital realm.
         </p>
@@ -149,7 +153,7 @@ function Home() {
           {
             mySkills.map((skill) => {
                 return (
-                  <div key={skill} className= {`${heroSecStyle.skill_box} bg-primary-bg p-10 flex flex-col items-center justify-center gap-3 text-sm rounded-xl transition duration-300 ease-in-out hover:scale-110`}>
+                  <div key={skill} className= {`${heroSecStyle.skill_box} bg-primary-bg p-10 flex flex-col items-center justify-center gap-3 text-sm rounded-xl transition duration-300 ease-in-out hover:scale-110`} data-aos="zoom-in">
                      <div className={`${heroSecStyle.skill_logo}`}>
                        <img src={skill.icon} alt={skill.skill} width={60} height={60} />
                      </div>
