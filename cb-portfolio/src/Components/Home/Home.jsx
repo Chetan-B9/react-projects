@@ -2,8 +2,60 @@ import { Link } from "react-router-dom";
 import heroSecStyle from "../../CSS/Home page Styles/heroSection.module.css";
 import { FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp, FaAngleRight  } from "react-icons/fa";
 import ProjectCard from "./ProjectCard";
+// import SkillCard from "./SkillCard";
 
 function Home() {
+
+  const mySkills = [
+    {
+      skill: "HTML",
+      icon: "Icons/skills icons/html-5-svgrepo-com.webp",
+      score: 80,
+    },
+    {
+      skill: "CSS",
+      icon: "Icons/skills icons/css3-svgrepo-com.webp",
+      score: 80,
+    },
+    {
+      skill: "Bootstrap",
+      icon: "Icons/skills icons/bootstrap.webp",
+      score: 75,
+    },
+    {
+      skill: "JavaScript",
+      icon: "Icons/skills icons/js.webp",
+      score: 80,
+    },
+    {
+      skill: "PHP",
+      icon: "Icons/skills icons/php.webp",
+      score: 60,
+    },
+    {
+      skill: "MYSQL",
+      icon: "Icons/skills icons/mysql.webp",
+      score: 55,
+    },
+    {
+      skill: "React",
+      icon: "Icons/skills icons/react.webp",
+      score: 75,
+    },
+    {
+      skill: "Tailwind CSS",
+      icon: "Icons/skills icons/tailwind-css.png",
+      score: 65,
+    },
+    {
+      skill: "GitHub",
+      icon: "Icons/skills icons/github.webp",
+      score: 60,
+    },
+  ]
+  
+ 
+
   return (
     <>
     <div className="container">
@@ -58,7 +110,7 @@ function Home() {
     {/* About section start */}
     <section className={`${heroSecStyle.about_section} px-8 py-14 md:px-20 lg:px-40 bg-secondary-bg flex flex-col  gap-16 text-center`}>
         <h3 className="text-4xl text-main  font-bold">About Me</h3>
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="flex justify-center">
           <img src="Images/About me-cuate.png" alt="about me image" />
         </div>
@@ -82,14 +134,36 @@ function Home() {
        <div className="flex flex-col gap-32">
          <ProjectCard rev={false}/>
        </div>
-       
-       
-
        <div className="flex justify-center text-msm text-secondary-text">
          <Link to='#' className="flex items-center underline underline-offset-2 hover:text-main hover:drop-shadow-glow">See More <FaAngleRight /></Link>
        </div>
     </section>
     {/* Projects section end  */}
+
+    {/* Skills section start  */}
+    <section className="skill_section px-8 py-14 md:px-20 lg:px-40 bg-secondary-bg">
+        <div className="text-center">
+          <h3 className="text-4xl text-main  font-bold">My Skills</h3>
+        </div>
+        <div className="container my-16 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
+          {
+            mySkills.map((skill) => {
+                return (
+                  <div key={skill} className= {`${heroSecStyle.skill_box} bg-primary-bg p-10 flex flex-col items-center justify-center gap-3 text-sm rounded-xl transition duration-300 ease-in-out hover:scale-110`}>
+                     <div className={`${heroSecStyle.skill_logo}`}>
+                       <img src={skill.icon} alt={skill.skill} width={60} height={60} />
+                     </div>
+                     <div>
+                        <p className="">{skill.skill}</p>
+                     </div>
+                  </div>
+                )
+              
+            })
+          }
+        </div>
+    </section>
+    {/* Skills section end  */}
     </div>
     
     </>

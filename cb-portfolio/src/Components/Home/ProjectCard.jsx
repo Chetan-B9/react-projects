@@ -11,7 +11,7 @@ function ProjectCard({rev}) {
 
   return (
     <>
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
          <div className={` h-full flex justify-center ${reverse ? 'order-2' : 'order-1'} `}>
            <div className={`${heroSecStyle.project_img} flex justify-cente project_img rounded-xl`}>
              <img src="Images/timg.png" alt="about me image" className="w-full h-full object-cover rounded-xl"/>

@@ -41,6 +41,18 @@
 
 /* project section style end  */
 
+/* skills section style start  */
+.skill_box:hover{
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+        .skill_logo img{
+            filter: drop-shadow( 0px 8px 20px rgba(149, 157, 165, 0.271));
+            -webkit-filter: drop-shadow( 0px 8px 20px rgba(149, 157, 165, 0.271));
+}
+}
+
+/* skills section style end  */
+
 @media (width < 1200px){
     .hero_section{
         height: fit-content;
