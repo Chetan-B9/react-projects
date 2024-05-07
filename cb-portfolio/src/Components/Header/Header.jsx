@@ -13,20 +13,20 @@ function Header() {
         </div>
         <div className="hidden lg:flex flex-1 text-msm ">
             <ul className="lg:flex justify-end items-center  gap-12 w-full h-full font-semibold">
-                <li className="hover:text-main">
-                    <NavLink to="/" className={({isActive}) => isActive ? "text-main" : "text-primary-text"}>Home</NavLink>
+                <li className="">
+                    <NavLink to="/" className={({isActive}) => isActive ? "text-main" : "text-primary-text hover:text-main"}>Home</NavLink>
                 </li>
                 {/* <li className="hover:text-main">
                    <NavLink to="/about" className={({isActive}) => isActive ? "text-main" : "text-primary-text"}>About</NavLink>
                 </li> */}
-                <li className="hover:text-main">
-                   <NavLink to="/">Projects</NavLink>
+                <li>
+                   <NavLink to="/projects" className={({isActive}) => isActive ? "text-main" : "text-primary-text hover:text-main"}>Projects</NavLink>
                 </li>
-                <li className="hover:text-main">
-                   <NavLink to="/">Resume</NavLink>
+                <li>
+                   <NavLink to="/" className={({isActive}) => isActive ? "text-main" : "text-primary-text hover:text-main"}>Resume</NavLink>
                 </li>
-                <li className="hover:text-main">
-                   <NavLink to="mailto:chetan.bedakihale80@gamil.com"><FaEnvelope   /></NavLink>
+                <li>
+                   <NavLink to="mailto:chetan.bedakihale80@gamil.com" className={({isActive}) => isActive ? "text-main" : "text-primary-text hover:text-main"}><FaEnvelope   /></NavLink>
                 </li>
             </ul>
         </div>

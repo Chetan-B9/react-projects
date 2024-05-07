@@ -3,10 +3,34 @@ import { Link } from "react-router-dom";
 import heroSecStyle from "../../CSS/Home page Styles/heroSection.module.css";
 import { FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp, FaAngleRight  } from "react-icons/fa";
 import ProjectCard from "./ProjectCard";
+// import { useEffect } from "react";
+import projects from "../../JSON/projects-data.json"
+import { useState } from "react";
+import { Databases } from "appwrite";
+import client from "../../lib/appwrite";
 
 // import SkillCard from "./SkillCard";
 
 function Home() {
+  const fetchData = async () => {
+    const databases = new Databases(client)
+    try{
+      const response = await databases.listDocuments(
+        '6637bf49000e48731635',
+        '6637bf690031b36d9741'
+      )
+
+      console.log(response.documents);
+    }
+    catch (error) {
+      console.log(console.error('Failed to fetch'));
+    }
+  }
+
+  fetchData();
+  const [threeProjects] = useState(projects.reverse().slice(0, 3))
+  let reversable = true;
+ 
 
   const mySkills = [
     {
@@ -38,7 +62,7 @@ function Home() {
       skill: "MYSQL",
       icon: "Icons/skills icons/mysql.webp",
       score: 55,
-    },
+    }, 
     {
       skill: "React",
       icon: "Icons/skills icons/react.webp",
@@ -135,11 +159,24 @@ function Home() {
     <section className={`project_section px-8 py-14 md:px-20 lg:px-40 flex flex-col gap-16 text-center`}>
        <h3 className="text-4xl text-main  font-bold">My Projects</h3>
 
-       <div className="flex flex-col gap-32">
-         <ProjectCard rev={false}/>
+       <div className="flex flex-col gap-48">
+         {
+
+          threeProjects.map((project) => {
+            reversable = !reversable;
+            return (
+              <div key={project.projectId}>
+                <ProjectCard  projectName={project.projectName} description={project.description} id={project.id} thumbnail={project.thumbnail} rev={reversable}/>
+              </div>
+              
+            )
+           
+          })
+         }
+         
        </div>
        <div className="flex justify-center text-msm text-secondary-text">
-         <Link to='#' className="flex items-center underline underline-offset-2 hover:text-main hover:drop-shadow-glow">See More <FaAngleRight /></Link>
+         <Link to='/projects' className="flex items-center underline underline-offset-2 hover:text-main hover:drop-shadow-glow">See More <FaAngleRight /></Link>
        </div>
     </section>
     {/* Projects section end  */}

@@ -1,27 +1,28 @@
 import heroSecStyle from "../../CSS/Home page Styles/heroSection.module.css";
-import { Link } from "react-router-dom";
+import {NavLink } from "react-router-dom";
 
-function ProjectCard({rev}) {
+function ProjectCard({projectName, description, id, thumbnail, rev}) {
     // console.log(props.length > 0 ? true : false)
     let reverse = rev;
-
-
-    // let isReverse = ;
-    // console.log(typeof reverse)
+    const strTruncator = (str, maxLength) => {
+      return str.length > maxLength
+        ? <span>{str.substring(0, maxLength).trim()}<span className="text-main">...</span></span> 
+        : str;
+    };
 
   return (
     <>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" >
          <div className={` h-full flex justify-center ${reverse ? 'order-2' : 'order-1'} `} data-aos="fade-down">
            <div className={`${heroSecStyle.project_img} flex justify-cente project_img rounded-xl`}>
-             <img src="Images/timg.png" alt="about me image" className="w-full h-full object-cover rounded-xl"/>
+             <img src={thumbnail} alt="about me image" className="w-full h-full object-cover rounded-xl"/>
            </div>
          </div>
 
          <div className={`flex flex-col items-center justify-center gap-4 px-10 text-sm ${reverse ? 'order-1' : 'order-2'}`} data-aos="fade-down" data-aos-delay="200">
-            <h2 className="text-main text-3xl">Porject Name</h2>
-            <p className="text-sm text-secondary-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, qui?</p>
-            <Link to="#" className="hover:text-main hover:drop-shadow-glow underline underline-offset-4 my-4">View Project</Link>
+            <h2 className="text-main text-3xl">{projectName}</h2>
+            <p className="text-sm text-secondary-text">{strTruncator(description, 150)}</p>
+            <NavLink to="#" className="hover:text-main hover:drop-shadow-glow underline underline-offset-4 my-4">View Project</NavLink>
          </div>
        </div>
     </>
