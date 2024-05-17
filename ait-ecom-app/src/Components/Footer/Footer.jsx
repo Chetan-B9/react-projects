@@ -26,19 +26,19 @@ function Footer() {
             </div>
 
             <ul className="text-lg text-footer-text my-5 flex flex-col gap-2">
-                <li>
+                <li className="hover:underline">
                     <NavLink>Careers</NavLink>
                 </li>
-                <li>
+                <li className="hover:underline">
                     <NavLink>Our Stores</NavLink>
                 </li>
-                <li>
+                <li className="hover:underline w-fit">
                     <NavLink>Our Cares</NavLink>
                 </li>
-                <li>
+                <li className="hover:underline w-fit">
                     <NavLink>Terms and Conditions</NavLink>
                 </li>
-                <li>
+                <li className="hover:underline w-fit">
                     <NavLink>Privacy Policy</NavLink>
                 </li>
             </ul>
@@ -51,19 +51,19 @@ function Footer() {
             </div>
 
             <ul className="text-lg text-footer-text my-5 flex flex-col gap-2">
-                <li>
+                <li className="hover:underline w-fit">
                     <NavLink>Help Center</NavLink>
                 </li>
-                <li>
+                <li className="hover:underline w-fit">
                     <NavLink>How to Buy</NavLink>
                 </li>
-                <li>
+                <li className="hover:underline w-fit">
                     <NavLink>Track Your Order</NavLink>
                 </li>
-                <li>
+                <li className="hover:underline w-fit">
                     <NavLink>Corporate and Bulk Purchasing</NavLink>
                 </li>
-                <li>
+                <li className="hover:underline w-fit">
                     <NavLink>Returns and Refunds</NavLink>
                 </li>
             </ul>
