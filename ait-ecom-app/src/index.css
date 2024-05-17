@@ -1,5 +1,10 @@
 *{
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* color: #212529; */
+}
+
+.header{
+  box-shadow: rgba(118, 118, 118, 0.25) 0px 10px 28px, rgba(143, 143, 143, 0.22) 0px 10px 6px;
 }
 
 @tailwind base;

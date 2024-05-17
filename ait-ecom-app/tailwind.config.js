@@ -9,9 +9,9 @@ export default {
       colors: {
         'pimary' : '#F6F9FC',
         'secondary': '#FFFFFF',
-        'main': '#879AB0',
+        'main': '#0F3460',
         'main-text': '#212529',
-        'badge-color': '#0F3460',
+        'footer-text': '#879AB0',
       }
     },
   },
