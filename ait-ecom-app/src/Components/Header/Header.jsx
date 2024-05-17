@@ -3,7 +3,7 @@ import { FaShoppingBag, FaCartPlus, FaUser   } from "react-icons/fa";
 
 function Header() {
   return (
-    <header className="px-28 py-4 header">
+    <header className="px-28 py-4 header sticky top-0 left-0 bg-secondary">
         <div className="container flex">
             <div className="brand w-[30%] font-semibold text-2xl flex items-center gap-1">
                 <FaShoppingBag />
