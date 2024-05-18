@@ -2,5 +2,12 @@
 .right_side{
     img{
         width: 28rem;
+        height: 24rem;
+        object-fit: contain;
     }
+}
+
+
+.card{
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 6px 0px;
 }

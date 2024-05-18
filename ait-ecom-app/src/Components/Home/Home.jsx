@@ -1,39 +1,47 @@
-import { Link } from 'react-router-dom'
-import homeStyle from '../../CSS/HomepageStyle/Home.module.css'
-import heroImage from '../../assets/Images/hero-img.png'
+// import homeStyle from '../../CSS/HomepageStyle/Home.module.css'
 import ServiceCard from './ServiceCard'
+import ProductCard from './ProductCard';
+import Slider from './Slider.jsx';
+import { serviceData, discoutProducts } from '../../assets/data/products.jsx'
 
-import { FaCar, FaCreditCard, FaShieldAlt, FaHeadphones   } from "react-icons/fa";
 function Home() {
+
+  console.log(discoutProducts);
   return (
     <>
       {/* hero section start  */}
-      <section className='hero_section px-28 py-32 bg-pimary'>
-        <div className='container flex'>
-           <div className="left_side w-[50%] flex flex-col gap-5 justify-center">
-             <h1 className='text-5xl leading-[3.5rem] font-semibold'>50% Off For Your First Shopping</h1>
-             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis impedit omnis aliquid? Beatae, numquam optio.</p>
-             <Link className='bg-[#f2f2f2] w-fit hover:underline'>Visit Collections</Link>
-           </div>
-
-           <div className={`${homeStyle.right_side} w-[50%] flex justify-center items-center`}>
-             <img src={heroImage} alt="Hero Image" />
-           </div>
-        </div>
+      <section className='hero_section px-28 py-28 bg-primary'>
+         <Slider />
       </section>
       {/* hero section end  */}
 
-      {/* features section start  */}
+      {/* Service section start  */}
       <section className="service_section px-28 py-10">
         <div className="container grid grid-cols-4 gap-2">
-          <ServiceCard title = "Free Shipping" description = "Lorem ipsum dolor sit amet" icon = {<FaCar />} cardColor = "bg-[#fdefe6]"/>
-          <ServiceCard title = "Safe Payment" description = "Lorem ipsum dolor sit amet" icon = {<FaCreditCard  />} cardColor = "bg-[#ceebe9]"/>
-          <ServiceCard title = "Secure Payment" description = "Lorem ipsum dolor sit amet" icon = {<FaShieldAlt />} cardColor = "bg-[#e2f2b2]"/>
-          <ServiceCard title = "Back Guarentee" description = "Lorem ipsum dolor sit amet" icon = {<FaHeadphones  />} cardColor = "bg-[#d6e5fb]"/>
+        {
+          serviceData.map((service, index) => <ServiceCard key={index} title={service.title} subtitle = {service.subtitle} icon={service.icon} bg = {service.bg}/>
+          )
+        }
         </div>
          
       </section>
-      {/* features section end  */}
+      {/* Service section end  */}
+
+      {/* Discount section start  */}
+      <section className="discount_section px-64 pt-24 pb-14 bg-primary ">
+        <div className='text-center text-5xl font-semibold'>
+              <h2>Big Discount</h2>
+        </div>
+
+        <div className="container mt-14 grid lg:grid-cols-3 gap-5">
+           {
+            discoutProducts.map((product) => <ProductCard key={product.id} productName = {product.productName} price = {product.price} imgUrl = {product.imgUrl} avgRating = {product.avgRating} discount = {product.discount ?? null}/>
+            )
+           }
+           
+        </div>
+      </section>
+      {/* Discount section end  */}
     </>
   )
 }

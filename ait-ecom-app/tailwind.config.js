@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'pimary' : '#F6F9FC',
+        'primary' : '#F6F9FC',
         'secondary': '#FFFFFF',
         'main': '#0F3460',
         'main-text': '#212529',
