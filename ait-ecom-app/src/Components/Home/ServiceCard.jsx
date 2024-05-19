@@ -1,8 +1,7 @@
 
-
 function ServiceCard({title, subtitle, icon, bg}) {
   return (
-    <div className={`bg-[${bg}] py-7 flex flex-col gap-4 items-center`}>
+    <div className={`py-7 flex flex-col gap-4 items-center`} style={{background: bg}}>
         <div className="bg-secondary p-2 rounded-full text-2xl">
             {icon}
         </div>

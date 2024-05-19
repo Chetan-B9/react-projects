@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function ProductCard({productName, price, imgUrl, avgRating, discount}) {
   return (
-    <div className={`${homeStyle.card} bg-primary py-10 rounded-lg relative`}>
+    <div className={`${homeStyle.card} py-10 rounded-lg relative bg-secondary`}>
         {
             discount != null &&
                 <div className='badge absolute top-3 left-3 bg-main text-white px-3 py-1 text-xs rounded-xl'>
@@ -17,8 +17,7 @@ function ProductCard({productName, price, imgUrl, avgRating, discount}) {
        
         <div className="img_container w-full aspect-video">
             <Link>
-            <img src={imgUrl} alt={productName} className='w-full h-full object-contain'/>
-
+              <img src={imgUrl} alt={productName} className='w-full h-full object-contain'/>
             </Link>
         </div>
 

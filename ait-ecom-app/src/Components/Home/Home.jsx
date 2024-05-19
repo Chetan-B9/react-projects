@@ -2,11 +2,11 @@
 import ServiceCard from './ServiceCard'
 import ProductCard from './ProductCard';
 import Slider from './Slider.jsx';
-import { serviceData, discoutProducts } from '../../assets/data/products.jsx'
+import { serviceData, discoutProducts, products } from '../../assets/data/products.jsx'
 
 function Home() {
 
-  console.log(discoutProducts);
+  console.log(products);
   return (
     <>
       {/* hero section start  */}
@@ -38,10 +38,45 @@ function Home() {
             discoutProducts.map((product) => <ProductCard key={product.id} productName = {product.productName} price = {product.price} imgUrl = {product.imgUrl} avgRating = {product.avgRating} discount = {product.discount ?? null}/>
             )
            }
-           
         </div>
       </section>
       {/* Discount section end  */}
+
+      {/* New Arrivals section start  */}
+      <section className="new_arrivals_section px-64 pt-24 pb-14">
+      <div className='text-center text-5xl font-semibold'>
+              <h2>New Arrivals</h2>
+        </div>
+
+        <div className="container mt-14 grid lg:grid-cols-3 gap-5">
+           {
+            products.map((product) => {
+               return (product.category === 'mobile' || product.category === 'wireless') && 
+              <ProductCard key={product.id} productName = {product.productName} price = {product.price} imgUrl = {product.imgUrl} avgRating = {product.avgRating} discount = {product.discount ?? null}/>
+            }
+            )
+           }
+        </div>
+      </section>
+      {/* New Arrivals section end  */}
+
+      {/* Best sells section start  */}
+      <section className="new_arrivals_section px-64 pt-24 pb-14 bg-primary">
+      <div className='text-center text-5xl font-semibold'>
+              <h2>Best Sales</h2>
+        </div>
+
+        <div className="container mt-14 grid lg:grid-cols-3 gap-5">
+           {
+            products.map((product) => {
+               return (product.category === 'sofa' || product.category === 'chairs') && 
+              <ProductCard key={product.id} productName = {product.productName} price = {product.price} imgUrl = {product.imgUrl} avgRating = {product.avgRating} discount = {product.discount ?? null}/>
+            }
+            )
+           }
+        </div>
+      </section>
+      {/* Best sells section end  */}
     </>
   )
 }

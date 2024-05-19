@@ -16,9 +16,10 @@ function Slider() {
     <Swiper
     // install Swiper modules
     modules={[Autoplay]}
-    spaceBetween={50}
+    speed={800}
     slidesPerView={1}
     autoplay = {true}
+    loop = {true}
     
     scrollbar={{ draggable: true }}
   >
