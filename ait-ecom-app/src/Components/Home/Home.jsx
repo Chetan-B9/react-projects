@@ -35,7 +35,7 @@ function Home() {
 
         <div className="container mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
            {
-            discoutProducts.map((product) => <ProductCard key={product.id} productName = {product.productName} price = {product.price} imgUrl = {product.imgUrl} avgRating = {product.avgRating} discount = {product.discount ?? null}/>
+            discoutProducts.map((product) => <ProductCard key={product.id} id={product.id} productName = {product.productName} price = {product.price} imgUrl = {product.imgUrl} avgRating = {product.avgRating} discount = {product.discount ?? null}/>
             )
            }
         </div>
@@ -52,7 +52,7 @@ function Home() {
            {
             products.map((product) => {
                return (product.category === 'mobile' || product.category === 'wireless') && 
-              <ProductCard key={product.id} productName = {product.productName} price = {product.price} imgUrl = {product.imgUrl} avgRating = {product.avgRating} discount = {product.discount ?? null}/>
+              <ProductCard key={product.id} id={product.id} productName = {product.productName} price = {product.price} imgUrl = {product.imgUrl} avgRating = {product.avgRating} discount = {product.discount ?? null}/>
             }
             )
            }
@@ -70,7 +70,7 @@ function Home() {
            {
             products.map((product) => {
                return (product.category === 'sofa' || product.category === 'chairs') && 
-              <ProductCard key={product.id} productName = {product.productName} price = {product.price} imgUrl = {product.imgUrl} avgRating = {product.avgRating} discount = {product.discount ?? null}/>
+              <ProductCard key={product.id} id={product.id} productName = {product.productName} price = {product.price} imgUrl = {product.imgUrl} avgRating = {product.avgRating} discount = {product.discount ?? null}/>
             }
             )
            }

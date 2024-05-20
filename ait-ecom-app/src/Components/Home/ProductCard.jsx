@@ -6,7 +6,7 @@ import { CiHeart } from "react-icons/ci";
 
 
 
-function ProductCard({productName, price, imgUrl, avgRating, discount}) {
+function ProductCard({id, productName, price, imgUrl, avgRating, discount}) {
   return (
     <div className={`${homeStyle.card} py-10 rounded-lg relative bg-secondary`}>
         {
@@ -22,7 +22,7 @@ function ProductCard({productName, price, imgUrl, avgRating, discount}) {
         </div>
        
         <div className="img_container w-full aspect-video">
-            <Link>
+            <Link to={`/product/${id}`}>
               <img src={imgUrl} alt={productName} className='w-full h-full object-contain'/>
             </Link>
         </div>
