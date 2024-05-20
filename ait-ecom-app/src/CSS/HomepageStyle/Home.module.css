@@ -1,4 +1,5 @@
 
+/* Carousel styling start */
 .right_side{
     img{
         width: 28rem;
@@ -6,8 +7,32 @@
         object-fit: contain;
     }
 }
+/* Carousel styling end */
 
-
+/* product card styling start  */
 .card{
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 6px 0px;
+
+    .like_button{
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    &:hover .like_button{
+        opacity: 1;
+        visibility: visible;
+    }
+}
+/* product card styling end  */
+
+/* media query  */
+
+@media (width < 768px){
+    .right_side{
+        img{
+            width: 24rem;
+            height: 20rem;
+            object-fit: contain;
+        }
+    }
 }

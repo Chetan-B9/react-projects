@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="px-28 py-20 bg-main">
-        <div className="container text-white grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-14">
+    <footer className="px-5 md:px-14 lg:px-28 py-20 bg-main">
+        <div className="container text-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-14">
           <div>
            {/* brand info */}
           <div className="brand w-[30%] font-bold text-2xl flex items-center gap-1">

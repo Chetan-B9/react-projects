@@ -2,6 +2,8 @@ import homeStyle from '../../CSS/HomepageStyle/Home.module.css'
 import { IoAddOutline  } from "react-icons/io5";
 import { Rate } from 'antd';
 import { Link } from 'react-router-dom';
+import { CiHeart } from "react-icons/ci";
+
 
 
 function ProductCard({productName, price, imgUrl, avgRating, discount}) {
@@ -14,6 +16,10 @@ function ProductCard({productName, price, imgUrl, avgRating, discount}) {
                 </div>
             
         }
+
+        <div className={`${homeStyle.like_button} absolute top-3 right-3 px-3 py-1 text-2xl w-fit h-fit text-[#757575]`}>
+            <CiHeart />
+        </div>
        
         <div className="img_container w-full aspect-video">
             <Link>
