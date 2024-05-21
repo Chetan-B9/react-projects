@@ -94,7 +94,14 @@ function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink>Shop</NavLink>
+            <NavLink
+                to="/shop"
+                className={({ isActive }) =>
+                  isActive ? "text-main" : "text-main-text"
+                }
+              >
+                Shop
+              </NavLink>
             </li>
             <li>
               <NavLink>Cart</NavLink>

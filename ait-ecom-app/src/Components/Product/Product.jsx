@@ -19,7 +19,7 @@ function Product() {
             products.map((product) => {
                 if(product.id === id){
                     return (
-                       <section key={id} className="product text-main-text">
+                       <main key={id} className="product text-main-text">
                             <div className={`${ProductStyle.product_title} h-52 bg-center`}>
                                 {/* product title  */}
                                 <div className='bg-[#0000009d] h-full flex justify-center items-center'>
@@ -109,13 +109,12 @@ function Product() {
                                    <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
                                       {
                                         products.map((prd, index) => ( prd.category === product.category && prd.id !== id) &&
-                                            <ProductCard key={index} productName = {prd.productName} price = {prd.price} imgUrl = {prd.imgUrl} avgRating = {prd.avgRating} discount = {prd.discount ?? null}/>
-
+                                            <ProductCard key={index} id={prd.id} productName = {prd.productName} price = {prd.price} imgUrl = {prd.imgUrl} avgRating = {prd.avgRating} discount = {prd.discount ?? null}/>
                                         )
                                       }
                                    </div>
                                 </div>
-                       </section>
+                       </main>
                     )
                 }
             })
