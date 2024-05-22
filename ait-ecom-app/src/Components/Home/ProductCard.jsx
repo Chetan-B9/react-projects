@@ -14,7 +14,6 @@ function ProductCard({id, productName, price, imgUrl, avgRating, discount}) {
                 <div className='badge absolute top-3 left-3 bg-main text-white px-3 py-1 text-xs rounded-xl'>
                   {discount}% Off
                 </div>
-            
         }
 
         <div className={`${homeStyle.like_button} absolute top-3 right-3 px-3 py-1 text-2xl w-fit h-fit text-[#757575]`}>
@@ -28,11 +27,11 @@ function ProductCard({id, productName, price, imgUrl, avgRating, discount}) {
         </div>
 
         <div className="mt-4 px-5">
-            <h3 className='text-xl font-semibold'>{productName}</h3>
+            <h3 className='text-lg md:text-xl font-semibold'>{productName}</h3>
             <Rate disabled allowHalf defaultValue={avgRating} className='text-lg mt-2'/>
         </div>
 
-        <div className='mt-6 px-5 font-semibold text-3xl'>
+        <div className='mt-6 px-5 font-semibold text-2xl md:text-3xl'>
             <h3>${price}</h3>
         </div>
 

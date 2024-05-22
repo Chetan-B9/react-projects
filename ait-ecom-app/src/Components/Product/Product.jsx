@@ -76,7 +76,7 @@ function Product() {
                                    </div>
                                    {
                                     active === 'desc' &&
-                                    <div className='mt-5'>
+                                    <div className='mt-5 text-justify'>
                                         <p>{product.description}</p>
                                     </div>
                                    }
@@ -106,7 +106,7 @@ function Product() {
                                       <h2 className='text-3xl font-semibold '>You might also like</h2>
                                    </div>
 
-                                   <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+                                   <div className="container grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
                                       {
                                         products.map((prd, index) => ( prd.category === product.category && prd.id !== id) &&
                                             <ProductCard key={index} id={prd.id} productName = {prd.productName} price = {prd.price} imgUrl = {prd.imgUrl} avgRating = {prd.avgRating} discount = {prd.discount ?? null}/>

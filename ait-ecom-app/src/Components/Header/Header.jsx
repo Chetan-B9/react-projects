@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import {
   FaHome,
@@ -31,10 +31,14 @@ function Header() {
           <h2>MART</h2>
         </div>
 
-        <div className="drawer_container w-[70%] block md:hidden flex items-center justify-end">
-          <button className="" onClick={showDrawer}>
-            <FaBars className="text-lg" />
+        <div className="drawer_container w-[70%] md:hidden flex items-center justify-end">
+          <div className="text-lg h-full flex items-center gap-4">
+          <FaUser />
+          <Link><FaCartPlus /></Link>
+          <button onClick={showDrawer}>
+            <FaBars />
           </button>
+          </div>
 
           <Drawer
             placement={"top"}
@@ -66,16 +70,16 @@ function Header() {
                 </li>
                 <li>
                   <FaShoppingBag />
-                  <NavLink className={`menu_item text-sm`}>Shop</NavLink>
+                  <NavLink to={'/shop'} className={`menu_item text-sm`}>Shop</NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <FaCartPlus />
                   <NavLink className={`menu_item text-sm`}>Cart</NavLink>
                 </li>
                 <li>
                   <FaUser />
                   <NavLink className={`menu_item text-sm`}>Profile</NavLink>
-                </li>
+                </li> */}
               </ul>
             </nav>
           </Drawer>
