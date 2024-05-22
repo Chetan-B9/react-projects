@@ -108,7 +108,12 @@ function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink>Cart</NavLink>
+              <NavLink 
+                 to='/cart'
+                 className={({ isActive }) =>
+                  isActive ? "text-main" : "text-main-text"
+                }
+                >Cart</NavLink>
             </li>
             <div className="flex items-center gap-8 text-xl">
               <li>
