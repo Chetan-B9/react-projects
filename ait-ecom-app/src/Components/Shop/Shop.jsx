@@ -36,7 +36,7 @@ function Shop() {
     setSearch(searchValue);
 
     products.map((product) => {
-      product.productName.toLowerCase().includes(searchValue.toLowerCase())
+      product.productName.toLowerCase().search(searchValue.toLowerCase())
         ? setIsAvailable(true)
         : setIsAvailable(false);
     });
@@ -52,7 +52,7 @@ function Shop() {
             if (search.length > 0) {
               return product.productName
                 .toLowerCase()
-                .includes(search.toLowerCase()) ? (
+                .search(search.toLowerCase()) ? (
                 <ProductCard
                   key={product.id}
                   id={product.id}

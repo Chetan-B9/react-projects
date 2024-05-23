@@ -6,7 +6,6 @@ import { serviceData, discoutProducts, products } from '../../assets/data/produc
 
 function Home() {
 
-  console.log(products);
   return (
     <>
       {/* hero section start  */}

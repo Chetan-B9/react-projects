@@ -3,10 +3,27 @@ import { IoAddOutline  } from "react-icons/io5";
 import { Rate } from 'antd';
 import { Link } from 'react-router-dom';
 import { CiHeart } from "react-icons/ci";
+import { useDispatch} from 'react-redux'
+import { addItem, countTotal } from '../../Redux/cartSlice';
+// import { AddToCart } from '../../Redux/Dispatch';
 
 
 
 function ProductCard({id, productName, price, imgUrl, avgRating, discount}) {
+  // const totalAmount = useSelector((state) => state.cart.total)
+  // const items = useSelector((state) => state.cart.items)
+  // console.log(items);
+  // console.log(totalAmount);
+  const dispatch = useDispatch()
+
+
+  const AddToCart = (id, productName, price, imgUrl) => {
+    dispatch(addItem({Id: id, pName: productName, Price: price, img: imgUrl, quantity: 1})) 
+    dispatch(countTotal())
+  }
+
+ 
+
   return (
     <div className={`${homeStyle.card} py-10 rounded-lg relative bg-secondary`}>
         {
@@ -35,7 +52,7 @@ function ProductCard({id, productName, price, imgUrl, avgRating, discount}) {
             <h3>${price}</h3>
         </div>
 
-        <button className='absolute bottom-10 right-5 border p-2 rounded-full text-3xl text-main hover:bg-main hover:text-white duration-200'>
+        <button className='absolute bottom-10 right-5 border p-2 rounded-full text-3xl text-main hover:bg-main hover:text-white duration-200' onClick={() => AddToCart(id, productName, price, imgUrl)}>
            <IoAddOutline />
         </button>
     </div>

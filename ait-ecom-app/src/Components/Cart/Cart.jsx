@@ -1,10 +1,14 @@
+import { useSelector } from "react-redux"
 import CartProductCard from "./CartProductCard"
 
 function Cart() {
+  const totalAmount = useSelector((state) => state.cart.total)
+  console.log(totalAmount);
+
   return (
     <main className="px-5 md:px-14 lg:px-28 py-16 bg-primary text-main-text">
        <div className="container flex gap-6">
-          <div className="md:w-[70%] flex flex-col gap-6">
+          <div className="md:w-[70%] flex flex-col gap-4">
              <CartProductCard />
           </div>
           <div className="md:w-[30%] bg-secondary p-5">
@@ -14,7 +18,7 @@ function Cart() {
 
             <div className="flex flex-col gap-1 pt-4">
                 <p>Total Price:</p>
-                <p className="text-xl text-main font-semibold">$2468.00</p>
+                <p className="text-xl text-main font-semibold">${totalAmount.toFixed(2)}</p>
             </div>
           </div>
        </div>
