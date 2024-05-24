@@ -25,6 +25,7 @@ function ProductCard({id, productName, price, imgUrl, avgRating, discount}) {
     }else{
       dispatch(upQuantity(id))
       dispatch(countTotal())
+      success()
     }
     
     

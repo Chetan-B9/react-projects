@@ -5,7 +5,7 @@ import homeStyle from '../../CSS/HomepageStyle/Home.module.css'
 function Slides({title, desc, cover}) {
   return (
     <div className='container flex flex-col md:flex-row'>
-    <div className="left_side w-full md:w-[50%] text-center md:text-left flex flex-col gap-5 justify-center items-center md:items-start order-2 md:order-1">
+    <div className="left_side w-full md:w-[50%] text-center md:text-left flex flex-col gap-5 justify-center items-center md:items-start order-2 md:order-1 px-0 md:px-10">
       <h1 className='text-4xl md:text-5xl leading-[3.5rem] font-semibold'>{title}</h1>
       <p>{desc}</p>
       <Link className='bg-[#f2f2f2] w-fit hover:underline'>Visit Collections</Link>

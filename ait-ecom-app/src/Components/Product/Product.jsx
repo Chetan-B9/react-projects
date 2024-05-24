@@ -25,6 +25,7 @@ function Product() {
     }else{
       dispatch(upQuantity(pId))
       dispatch(countTotal())
+      success()
     }     
   }
 

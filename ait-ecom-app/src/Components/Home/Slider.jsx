@@ -20,7 +20,6 @@ function Slider() {
     slidesPerView={1}
     autoplay = {true}
     loop = {true}
-    
     scrollbar={{ draggable: true }}
   >
     {

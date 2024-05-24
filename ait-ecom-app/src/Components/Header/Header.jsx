@@ -28,15 +28,20 @@ function Header() {
   return (
     <header className="px-5 md:px-14 lg:px-28 py-4 header sticky top-0 left-0 bg-secondary z-10">
       <div className="container flex">
-        <div className="brand w-[30%] font-semibold text-2xl flex items-center gap-1">
+        <NavLink to='/' className="brand w-[30%] font-semibold text-2xl flex items-center gap-1">
           <FaShoppingBag />
           <h2>MART</h2>
-        </div>
+        </NavLink>
 
         <div className="drawer_container w-[70%] md:hidden flex items-center justify-end">
           <div className="text-lg h-full flex items-center gap-4">
           <FaUser />
-          <Link><FaCartPlus /></Link>
+          <NavLink to='/cart'>
+                <Badge count={Items.length} size="small" color="#0F3460" showZero = {Items.length > 0 ? true : false} className="flex justify-center items-center ">
+                    <FaCartPlus className="text-xl"/>
+                </Badge>
+                  
+                </NavLink>
           <button onClick={showDrawer}>
             <FaBars />
           </button>

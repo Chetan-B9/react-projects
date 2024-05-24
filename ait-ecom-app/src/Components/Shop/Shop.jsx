@@ -6,13 +6,56 @@ import ProductCard from "../Home/ProductCard";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import NotFound from "./NotFound";
-// import NotFound from "./NotFound";
-// import shopStyle from "../../CSS/Shoppage Style/Shop.module.css";
+
+const SearchFilter = ({searchValue}) => {
+  return (
+      <div className="container grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {products
+          .filter((product) =>
+            product.productName.toLowerCase().includes(searchValue.toLowerCase())
+          )
+          .map((product) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              productName={product.productName}
+              price={product.price}
+              imgUrl={product.imgUrl}
+              avgRating={product.avgRating}
+              discount={product.discount ?? null}
+            />
+          ))}
+      </div>
+  );
+};
+
+const SelectFilter = ({filter}) => {
+  return (
+      <div className="container grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {products.map((product) => {
+              return (
+                product.category === filter && (
+                  <ProductCard
+                    key={product.id}
+                    id={product.id}
+                    productName={product.productName}
+                    price={product.price}
+                    imgUrl={product.imgUrl}
+                    avgRating={product.avgRating}
+                    discount={product.discount ?? null}
+                  />
+                )
+              );
+            })}
+          </div>
+    
+  )
+}
 
 function Shop() {
   const [category, setCategory] = useState([]);
   const [search, setSearch] = useState("");
-  const [isAvailble, setIsAvailable] = useState(true);
+  const [toggle, setToggle] = useState("filter");
   const nav = useNavigate();
 
   const { filter } = useParams();
@@ -30,59 +73,17 @@ function Shop() {
     nav("/shop/sofa");
   }, [products]);
 
-  const handleFilter = (e) => nav(`/shop/${e.target.value}`);
+  const handleFilter = (e) => {
+    nav(`/shop/${e.target.value}`);
+    setToggle("filter");
+  };
   const handleSearch = (e) => {
     let searchValue = e.target.value;
     setSearch(searchValue);
 
-    products.map((product) => {
-      product.productName.toLowerCase().search(searchValue.toLowerCase())
-        ? setIsAvailable(true)
-        : setIsAvailable(false);
-    });
-
-    console.log(isAvailble);
+    setToggle("search");
   };
 
-  const showProduct = () => {
-    return (
-      <>
-        <div className="container grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {products.map((product) => {
-            if (search.length > 0) {
-              return product.productName
-                .toLowerCase()
-                .search(search.toLowerCase()) ? (
-                <ProductCard
-                  key={product.id}
-                  id={product.id}
-                  productName={product.productName}
-                  price={product.price}
-                  imgUrl={product.imgUrl}
-                  avgRating={product.avgRating}
-                  discount={product.discount ?? null}
-                />
-              ) : null;
-            } else {
-              return (
-                product.category === filter && (
-                  <ProductCard
-                    key={product.id}
-                    id={product.id}
-                    productName={product.productName}
-                    price={product.price}
-                    imgUrl={product.imgUrl}
-                    avgRating={product.avgRating}
-                    discount={product.discount ?? null}
-                  />
-                )
-              );
-            }
-          })}
-        </div>
-      </>
-    );
-  };
 
   return (
     <main className="text-main-text">
@@ -138,25 +139,20 @@ function Shop() {
 
         {/* products part  */}
         <div className="px-5 md:px-36 lg:px-64 py-10">
-          {/* {
-                products.map((product) => {
-                  product.productName.toLowerCase().includes(search.toLowerCase()) ? () => setIsAvailable(true) : () => setIsAvailable(false)
-                })
-               } */}
+          {(toggle === "search" && search.length > 0) ? (
+            products.filter((product) =>
+              product.productName.toLowerCase().includes(search.toLowerCase())
+            ).length > 0 ? (
+              <SearchFilter searchValue= {search}/>
+            ) : (
+              <NotFound />
+            )
+          ) : toggle === 'search' && (
+            <SelectFilter filter= {filter}/>
+          )}
 
-          {isAvailble ? showProduct() : <NotFound />}
-          {/* {
-                    products.map((product) => {
-                        if(search.length > 0){
-                            return product.productName.toLowerCase().includes(search.toLowerCase()) ? <ProductCard key={product.id} id={product.id} productName = {product.productName} price = {product.price} imgUrl = {product.imgUrl} avgRating = {product.avgRating} discount = {product.discount ?? null}/> : null
-                        }else{
-                            return product.category === filter && <ProductCard key={product.id} id={product.id} productName = {product.productName} price = {product.price} imgUrl = {product.imgUrl} avgRating = {product.avgRating} discount = {product.discount ?? null}/>
-                        }
-
-                    })
-                } */}
+          {toggle === "filter" && <SelectFilter filter= {filter}/>}
         </div>
-        {/* </div> */}
       </section>
       {/* prodcuts section end  */}
     </main>
