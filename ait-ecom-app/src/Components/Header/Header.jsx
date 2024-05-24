@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import {
   FaHome,
   FaShoppingBag,
@@ -8,9 +9,10 @@ import {
   FaBars,
 } from "react-icons/fa";
 
-import { Drawer, Space } from "antd";
+import { Drawer, Space, Badge } from "antd";
 
 function Header() {
+  const Items = useSelector((state) => state.cart.items)
   const [open, setOpen] = useState(false);
 
   // function to show drawer
@@ -72,11 +74,11 @@ function Header() {
                   <FaShoppingBag />
                   <NavLink to={'/shop'} className={`menu_item text-sm`}>Shop</NavLink>
                 </li>
-                {/* <li>
-                  <FaCartPlus />
-                  <NavLink className={`menu_item text-sm`}>Cart</NavLink>
-                </li>
                 <li>
+                  <FaCartPlus />
+                  <NavLink to='/cart' className={`menu_item text-sm flex gap-3`}>Cart<span className={`bg-main rounded-full px-1.5 text-secondary text-xs flex justify-center items-center ${Items.length > 0 ? 'block' : 'hidden'}`}>{Items.length}</span></NavLink>
+                </li>
+                {/* <li>
                   <FaUser />
                   <NavLink className={`menu_item text-sm`}>Profile</NavLink>
                 </li> */}
@@ -120,8 +122,11 @@ function Header() {
                 <FaUser />
               </li>
               <li>
-                <NavLink>
-                  <FaCartPlus />
+                <NavLink to='/cart'>
+                <Badge count={Items.length} size="small" color="#0F3460" showZero = {Items.length > 0 ? true : false} className="flex justify-center items-center ">
+                    <FaCartPlus className="text-xl"/>
+                </Badge>
+                  
                 </NavLink>
               </li>
             </div>

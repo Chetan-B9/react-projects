@@ -1,31 +1,48 @@
 import homeStyle from '../../CSS/HomepageStyle/Home.module.css'
 import { IoAddOutline  } from "react-icons/io5";
-import { Rate } from 'antd';
+import { Rate, message } from 'antd';
 import { Link } from 'react-router-dom';
 import { CiHeart } from "react-icons/ci";
-import { useDispatch} from 'react-redux'
-import { addItem, countTotal } from '../../Redux/cartSlice';
-// import { AddToCart } from '../../Redux/Dispatch';
-
+import { useDispatch, useSelector} from 'react-redux'
+import { addItem,upQuantity, countTotal } from '../../Redux/cartSlice';
 
 
 function ProductCard({id, productName, price, imgUrl, avgRating, discount}) {
   // const totalAmount = useSelector((state) => state.cart.total)
-  // const items = useSelector((state) => state.cart.items)
+  const items = useSelector((state) => state.cart.items)
   // console.log(items);
   // console.log(totalAmount);
+  const [messageApi, contextHolder] = message.useMessage();
   const dispatch = useDispatch()
 
 
   const AddToCart = (id, productName, price, imgUrl) => {
-    dispatch(addItem({Id: id, pName: productName, Price: price, img: imgUrl, quantity: 1})) 
-    dispatch(countTotal())
+    if((items.find((item) => item.Id === id) === undefined)){
+      if(dispatch(addItem({Id: id, pName: productName, Price: price, img: imgUrl, quantity: 1})) ){
+        dispatch(countTotal())
+        success()
+      }
+    }else{
+      dispatch(upQuantity(id))
+      dispatch(countTotal())
+    }
+    
+    
   }
+
+  const success = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Product Added to Cart!',
+    });
+  };
 
  
 
   return (
-    <div className={`${homeStyle.card} py-10 rounded-lg relative bg-secondary`}>
+    <>
+      {contextHolder}
+      <div className={`${homeStyle.card} py-10 rounded-lg relative bg-secondary`}>
         {
             discount != null &&
                 <div className='badge absolute top-3 left-3 bg-main text-white px-3 py-1 text-xs rounded-xl'>
@@ -56,6 +73,8 @@ function ProductCard({id, productName, price, imgUrl, avgRating, discount}) {
            <IoAddOutline />
         </button>
     </div>
+    </>
+    
   )
 }
 

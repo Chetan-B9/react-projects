@@ -4,10 +4,36 @@ import { Rate } from 'antd';
 import ProductStyle from '../../CSS/Productpag Style/Product.module.css'
 import { useState } from 'react';
 import ProductCard from '../Home/ProductCard';
+import { useDispatch, useSelector} from 'react-redux'
+import { message } from 'antd';
+import { addItem, upQuantity, countTotal } from '../../Redux/cartSlice';
 
 function Product() {
   const { id } = useParams()
   const [active, setActive] = useState('desc')
+  const [qValue, setqValue] = useState(1)
+  const dispatch = useDispatch()
+  const [messageApi, contextHolder] = message.useMessage();
+  const items = useSelector((state) => state.cart.items)
+
+  const AddToCart = (pId, productName, price, imgUrl) => {
+    if((items.find((item) => item.Id === pId) === undefined)){
+      if(dispatch(addItem({Id: pId, pName: productName, Price: price, img: imgUrl, quantity: qValue})) ){
+        dispatch(countTotal())
+        success()
+      }
+    }else{
+      dispatch(upQuantity(pId))
+      dispatch(countTotal())
+    }     
+  }
+
+  const success = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'Product Added to Cart!',
+    });
+  };
 
   const handleToogle = (toogle) => {
     setActive(toogle)
@@ -15,6 +41,7 @@ function Product() {
 
   return (
     <>
+        {contextHolder}
         {
             products.map((product) => {
                 if(product.id === id){
@@ -57,8 +84,8 @@ function Product() {
 
                                            {/* bottom part  */}
                                            <div className='flex flex-col gap-5 mt-10'>
-                                              <input type="number" value={1}  min={1} className='w-[5rem] border border-black rounded-md px-3 py-1'/>
-                                              <button className='bg-main text-secondary text-lg w-fit px-3 py-2 rounded-md'>
+                                              <input type="number" value={qValue}  min={1} className='w-[5rem] border border-black rounded-md px-3 py-1' onChange={(e) => setqValue(e.target.value)}/>
+                                              <button className='bg-main text-secondary text-lg w-fit px-3 py-2 rounded-md' onClick={() => AddToCart(product.id, product.productName, product.price, product.imgUrl)}>
                                                 Add To Cart
                                               </button>
                                            </div>
