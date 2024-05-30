@@ -6,7 +6,7 @@ import { FaEnvelope } from "react-icons/fa";
 function Header() {
   return (
     //  header portion of the home page
-    <section className="px-8 md:px-20 lg:px-40  flex">
+    <section className="px-8 md:px-20 lg:px-40 flex">
         <div className="flex gap-2 items-center w-1/3 ">
             <img src="./cb logo.png" alt="logo" width={20}/>
             <h2 className="font-dm-sans text-lg tracking-widest font-extrabold">Portfolio</h2>
@@ -23,7 +23,7 @@ function Header() {
                    <NavLink to="/projects" className={({isActive}) => isActive ? "text-main" : "text-primary-text hover:text-main"}>Projects</NavLink>
                 </li>
                 <li>
-                   <NavLink to="/" className={({isActive}) => isActive ? "text-main" : "text-primary-text hover:text-main"}>Resume</NavLink>
+                   <NavLink  className='hover:text-main'>Resume</NavLink>
                 </li>
                 <li>
                    <NavLink to="mailto:chetan.bedakihale80@gamil.com" className={({isActive}) => isActive ? "text-main" : "text-primary-text hover:text-main"}><FaEnvelope   /></NavLink>

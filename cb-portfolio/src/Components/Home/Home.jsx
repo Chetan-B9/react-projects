@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Databases } from "appwrite";
 import client from "../../lib/appwrite";
 
+
 // import SkillCard from "./SkillCard";
 
 function Home() {
@@ -26,6 +27,7 @@ function Home() {
       console.log(console.error('Failed to fetch'));
     }
   }
+
 
   fetchData();
   const [threeProjects] = useState(projects.reverse().slice(0, 3))
