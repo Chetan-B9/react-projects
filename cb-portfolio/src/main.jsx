@@ -5,12 +5,13 @@ import Home from './Components/Home/Home'
 import Projects from './Components/Projects/Projects'
 import './index.css'
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
+import { projectsData } from './Components/Projects/Projects'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout/>}>
        <Route path='' element={<Home />}/>
-       <Route path='projects' element={<Projects />} />
+       <Route path='projects' element={<Projects />} loader = {projectsData} />
     </Route>
   )
 )

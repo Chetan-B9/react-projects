@@ -26,7 +26,7 @@ function Product() {
             pName: productName,
             Price: price,
             img: imgUrl,
-            quantity: qValue,
+            quantity: Number(qValue),
           })
         )
       ) {

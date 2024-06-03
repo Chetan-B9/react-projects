@@ -1,7 +1,13 @@
 import ProjectCard from "./ProjectCard"
 import { useLoaderData } from "react-router-dom"
+
+import { Databases } from "appwrite";
+import client from "../../lib/appwrite";
+import { Conf } from "../../conf/Conf";
+
 function Projects() {
-  const projectData = useLoaderData()
+  const projects = useLoaderData()
+  console.log(projects);
   return (
     <>
         {/* Breadcrubm start */}
@@ -15,9 +21,9 @@ function Projects() {
         <section className="projects_section px-8 pt-10 md:px-20 lg:px-40">
           <div className="container grid grid-cols-3 gap-x-5 gap-y-16">
             {
-              projectData.map((project) => {
+              projects.map((project) => {
                 return (
-                  <ProjectCard key={project.id} project = {project}/>
+                  <ProjectCard key={project.project_id} project = {project}/>
                 )
               })
             }
@@ -29,3 +35,18 @@ function Projects() {
 }
 
 export default Projects
+
+export const projectsData = async () => {
+  const databases = new Databases(client)
+    try{
+      const response = await databases.listDocuments(
+        Conf.appWriteDatabaseId,
+        Conf.apoWriteCollectionId,
+      )
+
+      return response.documents;
+    }
+    catch (error) {
+      console.log(console.error('Failed to fetch'));
+    }
+}

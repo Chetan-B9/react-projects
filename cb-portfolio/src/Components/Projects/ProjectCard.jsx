@@ -1,14 +1,21 @@
 import { Link } from "react-router-dom";
 import projectStyle from '../../CSS/Projects page sytles/projects.module.css'
+import { Conf } from "../../conf/Conf";
+import { Storage } from "appwrite";
+import client from "../../lib/appwrite";
+
 
 function ProjectCard(props) {
-    const {project_id, project_name, description} = props.project;
-   
+    const {project_id, project_name, description, thumbnail_id} = props.project;
+    
+    const storage = new Storage(client);
+    console.log(thumbnail_id);
+
   return (
     <div className={`${projectStyle.card} bg-secondary-bg rounded-xl hover:scale-105 duration-200`}>
-      <div className={`h-[13rem]rounded-t-xl`}>
+      <div className={`h-[13rem] rounded-t-xl overflow-hidden`}>
         <img
-          src="Images\Screenshots\Weather Application\weather-app-2.webp"
+          src={(storage.getFileView(Conf.appWriteThumbnailsBucketId, thumbnail_id)).href}
           alt=""
           className="w-full h-full object-cover  rounded-t-xl"
         />

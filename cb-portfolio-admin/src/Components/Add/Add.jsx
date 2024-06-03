@@ -4,24 +4,56 @@ import { message } from 'antd';
 
 
 import { Databases, Storage, ID } from "appwrite";
-import client from "../../../../cb-portfolio/src/lib/appwrite";
-import { Conf } from "../../../../cb-portfolio/src/conf/Conf";
+import client from "../../lib/appwrite"
+import { Conf } from "../../Conf/conf";
 
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
+
+// const uploadImages = (source) => {
+
+// }
 
 function Add() {
   const storage = new Storage(client)
   const {register, handleSubmit, formState: {errors}} = useForm()
   const [checkedItems, setCheckedItems] = useState([]);
+  const [showLoad, setShowLoad] = useState(false)
   const [messageApi, contextHolder] = message.useMessage();  
   const key = 'updatable';
 
+  
 
 
+  const technologies = ['HTML', 'CSS', 'JAVASCRIPT', 'React JS', 'Bootstrap', 'Tailwind CSS', 'Next.Js', 'Node.JS', 'Express.JS', 'MongoDB']
+  const submit = async (data) => {
+    let res = []
 
-  const technologies = ['HTML', 'CSS', 'JAVASCRIPT']
-  const submit = (data) => {
+    setShowLoad(true);
+    // console.log(data.screenshots);
     
-    console.log({...data, features: data.features.split(',')});
+    // console.log({...data, features: data.features.split(',')});
+
+    const storagePromise = await storage.createFile(
+      Conf.appWriteThumbnailsBucketId,
+      ID.unique(),
+      document.getElementById('uploader').files[0]
+    );
+
+    if (document.getElementById('screenshots').files.length > 0 ){
+      
+      const screenshotUploadPromises = [...document.getElementById('screenshots').files].map((screenshot) => {
+        return storage.createFile(
+          Conf.appWriteScreenshotsBucketId,
+          ID.unique(),
+          screenshot
+        )
+      })
+
+      const screenshotResponses = await Promise.all(screenshotUploadPromises);
+      res = screenshotResponses.map((response => response.$id))
+    }
+
 
     const databases = new Databases(client);
 
@@ -36,25 +68,23 @@ function Add() {
         features: data.features.split(','),
         technologies: checkedItems,
         github_link: data.gitHub,
-        live_link: data.liveLink
+        live_link: data.liveLink,
+        thumbnail_id: storagePromise.$id,
+        screenshots: res
+        
     }
   );
 
   dbPromise.then(
-    () => successMessage('Project Uploaded!'),
+    () => {
+      setShowLoad(false);
+      successMessage('Project Uploaded!');
+    },
     () => errorMessage('Project is not uploaded!')
   );
 
-  const storagePromise = storage.createFile(
-    Conf.appWriteBucketId,
-    ID.unique(),
-    document.getElementById('uploader').files[0]
-);
+//  setScreenshotIds([])
 
-storagePromise.then(
-  () => null,
-    () => errorMessage('Image is not uploaded!')
-);
   }
 
     const handleCheckboxChange = (event) => {
@@ -143,23 +173,43 @@ storagePromise.then(
 
             <div className="flex flex-col gap-1">
               <label htmlFor="" className="text-msm text-main">GitHub Repo link</label>
-              <input type="url" {...register("gitHub")} className="p-4 bg-primary-bg rounded-md text-msm focus:border-main focus:outline-0" placeholder="Eg: www.github.com/user-name"/>
+              <input type="url" {...register("gitHub", { pattern: { value: /^(https?:\/\/)?(www\.)?github\.com\/[A-Za-z0-9_.-]+$/, message: "Enter a valid GitHub URL" }})} className="p-4 bg-primary-bg rounded-md text-msm focus:border-main focus:outline-0" placeholder="Eg: www.github.com/user-name"/>
+              <p className="text-msm text-red-600">{errors.gitHub?.message}</p>
+
             </div>
 
             <div className="flex flex-col gap-1">
               <label htmlFor="" className="text-msm text-main">Live link</label>
-              <input type="url" {...register("liveLink")} className="p-4 bg-primary-bg rounded-md text-msm focus:border-main focus:outline-0" placeholder="Eg: https://www.example.com"/>
+              <input type="url" {...register("liveLink", { pattern: { value: /^(https?:\/\/)?(www\.)?[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, message: "Enter a valid URL" } })} className="p-4 bg-primary-bg rounded-md text-msm focus:border-main focus:outline-0" placeholder="Eg: https://www.example.com"/>
+              <p className="text-msm text-red-600">{errors.liveLink?.message}</p>
+
             </div>
 
             <div className="flex flex-col gap-1">
               <label htmlFor="" className="text-msm text-main">Thumbnail <span className="text-primary-text">*</span></label>
-              <input type="file" {...register("thumbnail", {required : "Thumbnail image is required"})} className="p-4 bg-primary-bg rounded-md text-msm focus:border-main focus:outline-0" id="uploader"/>
+              <input type="file" {...register("thumbnail", {required : "Thumbnail image is required"})} accept="image/png, image/jpg, image/jpeg" className="p-4 bg-primary-bg rounded-md text-msm focus:border-main focus:outline-0" id="uploader"/>
               <p className="text-msm text-red-600">{errors.thumbnail?.message}</p>
+            </div>
 
+            <div className="flex flex-col gap-1">
+              <label htmlFor="" className="text-msm text-main">Screenshots</label>
+              <input type="file" {...register("screenshots")} multiple accept="image/png, image/jpg, image/jpeg" className="p-4 bg-primary-bg rounded-md text-msm focus:border-main focus:outline-0" id="screenshots"/>
             </div>
 
             <div className="">
-              <button type="submit"  className="bg-main text-center w-full p-3 rounded-md text-black font-semibold">Upload</button>
+              <button type="submit" className="bg-main flex gap-3 justify-center w-full p-3 rounded-md text-black font-semibold"><span className={`${showLoad ? 'hidden' : 'block'}`}>Upload</span> 
+              <Spin className={`${showLoad ? 'block' : 'hidden'}`}
+    indicator={
+      <LoadingOutlined
+        style={{
+          fontSize: 22,
+          color: "black"
+        }}
+        spin
+      />
+    }
+  />
+              </button>
             </div>
 
           </form>
