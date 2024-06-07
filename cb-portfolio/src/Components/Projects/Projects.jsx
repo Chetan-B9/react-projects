@@ -1,7 +1,7 @@
 import ProjectCard from "./ProjectCard"
 import { useLoaderData } from "react-router-dom"
 
-import { Databases } from "appwrite";
+import { Databases, Query } from "appwrite";
 import client from "../../lib/appwrite";
 import { Conf } from "../../conf/Conf";
 
@@ -42,6 +42,9 @@ export const projectsData = async () => {
       const response = await databases.listDocuments(
         Conf.appWriteDatabaseId,
         Conf.apoWriteCollectionId,
+        [
+          Query.orderDesc("upload_date_time"),
+      ]
       )
 
       return response.documents;

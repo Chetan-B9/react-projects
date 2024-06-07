@@ -17,19 +17,19 @@ function ProjectCard(props) {
         <img
           src={(storage.getFileView(Conf.appWriteThumbnailsBucketId, thumbnail_id)).href}
           alt=""
-          className="w-full h-full object-cover  rounded-t-xl"
+          className="w-full h-full object-cover rounded-t-xl"
         />
       </div>
 
       <div className="py-4 px-5">
         <div>
-          <h3 className="text-xl text-main">{project_name}</h3>
-          <p className="text-sm mt-3 text-secondary-text text-justify">
-            {description}
+          <h3 className="text-xl text-main">{project_name.length > 25 ? project_name.slice(0, 26) + '...' : project_name}</h3>
+          <p className="text-msm mt-3 text-secondary-text text-justify">
+            {description.slice(0, 128) + '...'}
           </p>
         </div>
 
-        <div className="mt-5">
+        <div className="mt-5 pb-3">
           <Link
             to="#"
             className=" text-sm underline underline-offset-4 hover:text-main hover:drop-shadow-glow "
