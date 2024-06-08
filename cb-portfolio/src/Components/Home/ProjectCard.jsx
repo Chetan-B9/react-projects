@@ -1,8 +1,13 @@
 import heroSecStyle from "../../CSS/Home page Styles/heroSection.module.css";
 import {NavLink } from "react-router-dom";
+import { Storage } from "appwrite";
+import { Conf } from "../../conf/Conf";
+import client from "../../lib/appwrite";
 
 function ProjectCard({projectName, description, id, thumbnail, rev}) {
     // console.log(props.length > 0 ? true : false)
+    const storage = new Storage(client);
+
     let reverse = rev;
     const strTruncator = (str, maxLength) => {
       return str.length > maxLength
@@ -15,7 +20,7 @@ function ProjectCard({projectName, description, id, thumbnail, rev}) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" >
          <div className={` h-full flex justify-center ${reverse ? 'order-2' : 'order-1'} `} data-aos="fade-down">
            <div className={`${heroSecStyle.project_img} flex justify-cente project_img rounded-xl`}>
-             <img src={thumbnail} alt="about me image" className="w-full h-full object-cover rounded-xl"/>
+             <img src={(storage.getFileView(Conf.appWriteThumbnailsBucketId, thumbnail)).href} alt="about me image" className="w-full h-full object-cover rounded-xl"/>
            </div>
          </div>
 

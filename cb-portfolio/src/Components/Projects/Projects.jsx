@@ -7,7 +7,6 @@ import { Conf } from "../../conf/Conf";
 
 function Projects() {
   const projects = useLoaderData()
-  console.log(projects);
   return (
     <>
         {/* Breadcrubm start */}

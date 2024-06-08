@@ -35,9 +35,11 @@ function Add() {
     "React JS",
     "Bootstrap",
     "Tailwind CSS",
+    "PHP",
     "Next.Js",
     "Node.JS",
     "Express.JS",
+    "MySQL",
     "MongoDB",
   ];
   const submit = async (data) => {
@@ -227,7 +229,7 @@ function Add() {
               <div>
                 {
                   features.length > 0 &&
-                  <ul className="flex gap-3 mt-2">
+                  <ul className="flex flex-wrap gap-3 mt-2">
                     {
                       features.map((feature, index) => {
                     return (

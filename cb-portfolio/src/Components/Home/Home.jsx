@@ -4,33 +4,41 @@ import heroSecStyle from "../../CSS/Home page Styles/heroSection.module.css";
 import { FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp, FaAngleRight  } from "react-icons/fa";
 import ProjectCard from "./ProjectCard";
 // import { useEffect } from "react";
-import projects from "../../JSON/projects-data.json"
-import { useState } from "react";
-import { Databases } from "appwrite";
+// import projects from "../../JSON/projects-data.json"
+import { useEffect, useState } from "react";
+import { Databases, Query } from "appwrite";
 import client from "../../lib/appwrite";
-
+import { Conf } from "../../conf/Conf";
 
 // import SkillCard from "./SkillCard";
 
 function Home() {
-  const fetchData = async () => {
-    const databases = new Databases(client)
-    try{
-      const response = await databases.listDocuments(
-        '6637bf49000e48731635',
-        '6637bf690031b36d9741'
-      )
-
-      console.log(response.documents);
+  const [projects, setProjects] = useState([]) 
+  useEffect(() => {
+    const fetchData = async () => {
+      const databases = new Databases(client)
+      try{
+        const response = await databases.listDocuments(
+          Conf.appWriteDatabaseId,
+          Conf.apoWriteCollectionId,
+          [
+            Query.limit(3),
+            Query.offset(0),
+            Query.orderDesc("upload_date_time"),
+        ]
+        )
+  
+        setProjects(response.documents);
+      }
+      catch (error) {
+        console.log(console.error('Failed to fetch'));
+      }
     }
-    catch (error) {
-      console.log(console.error('Failed to fetch'));
-    }
-  }
 
-
-  fetchData();
-  const [threeProjects] = useState(projects.reverse().slice(0, 3))
+    fetchData()
+    
+  })
+  // const [threeProjects] = useState(projects.reverse().slice(0, 3))
   let reversable = true;
  
 
@@ -164,11 +172,11 @@ function Home() {
        <div className="flex flex-col gap-48">
          {
 
-          threeProjects.map((project) => {
+          projects.map((project) => {
             reversable = !reversable;
             return (
-              <div key={project.projectId}>
-                <ProjectCard  projectName={project.projectName} description={project.description} id={project.id} thumbnail={project.thumbnail} rev={reversable}/>
+              <div key={project.project_id}>
+                <ProjectCard  projectName={project.project_name} description={project.description} id={project.project_id} thumbnail={project.thumbnail_id} rev={reversable}/>
               </div>
               
             )
